@@ -1,0 +1,41 @@
+# D2D Machine Learning Project Configuration
+
+# Data Configuration
+data:
+  filepath: "data/sample_data.csv"
+  
+# Target variable
+target_column: "target"
+
+# Data splitting
+test_size: 0.2
+random_state: 42
+
+# Preprocessing Configuration
+preprocessing:
+  drop_duplicates: true
+  handle_missing: "drop"  # Options: "drop", "fill"
+  categorical_columns: null  # Auto-detect if null
+  numeric_columns: null      # Auto-detect if null
+  scaling_method: "standard" # Options: "standard"
+
+# Model Configuration
+model:
+  problem_type: "classification"  # Options: "classification", "regression"
+  model_type: "random_forest"     # Options: "random_forest", "logistic_regression", "svm", "linear_regression"
+  parameters:
+    n_estimators: 100
+    random_state: 42
+    max_depth: 10
+
+# Output Configuration
+output:
+  model_path: "models/trained_model.pkl"
+  preprocessor_path: "models/preprocessor.pkl"
+  evaluation_report: "reports/evaluation_report.txt"
+  plots_directory: "plots/"
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  log_file: "logs/training.log"

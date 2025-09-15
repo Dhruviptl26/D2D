@@ -1,0 +1,80 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "d2d"
+version = "0.1.0"
+description = "D2D Machine Learning Project - A comprehensive ML framework"
+readme = "README.md"
+authors = [
+    {name = "D2D Team", email = "team@d2d.com"}
+]
+license = {text = "MIT"}
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "numpy>=1.21.0",
+    "pandas>=1.3.0",
+    "scikit-learn>=1.0.0",
+    "matplotlib>=3.4.0",
+    "seaborn>=0.11.0",
+    "scipy>=1.7.0",
+    "plotly>=5.0.0",
+    "pyyaml>=6.0",
+    "click>=8.0.0",
+    "tqdm>=4.62.0",
+    "joblib>=1.0.0",
+]
+
+[project.optional-dependencies]
+deep-learning = [
+    "torch>=1.9.0",
+    "tensorflow>=2.7.0",
+]
+monitoring = [
+    "mlflow>=1.20.0",
+    "wandb>=0.12.0",
+]
+dev = [
+    "pytest>=6.2.0",
+    "pytest-cov>=3.0.0",
+    "black>=21.0.0",
+    "flake8>=4.0.0",
+    "isort>=5.9.0",
+]
+
+[project.scripts]
+d2d-train = "d2d.train:train"
+d2d-predict = "d2d.predict:predict"
+d2d-generate-data = "generate_sample_data:generate_data"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["d2d*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
