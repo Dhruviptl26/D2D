@@ -1,0 +1,127 @@
+/* Body background with animated gradient */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #a1c4fd, #c2e9fb);
+  background-size: 400% 400%;
+  animation: gradientMove 12s ease infinite;
+  min-height: 100vh;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.header {
+  text-align: center;
+  padding: 2rem;
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
+}
+
+.subtitle {
+  font-size: 1rem;
+  font-weight: 300;
+  opacity: 0.9;
+  margin-top: 0.5rem;
+}
+
+/* Fancy glassmorphism card */
+.card {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 650px;
+  margin: 2rem auto;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 35px rgba(0, 0, 0, 0.3);
+  transition: transform 0.4s;
+}
+
+.card:hover {
+  transform: scale(1.03) rotateX(3deg) rotateY(3deg);
+}
+
+/* Upload section */
+.upload-section {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.upload-label {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 15px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.upload-label:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: scale(1.05);
+}
+
+.preview {
+  max-width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+/* Dropdown */
+.options {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+select {
+  padding: 0.7rem 1.2rem;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  background: rgba(255,255,255,0.8);
+  cursor: pointer;
+}
+
+/* Code block with glow */
+.code-block {
+  background: #1e1e1e;
+  color: #0ff;
+  border-radius: 15px;
+  padding: 1.2rem;
+  margin: 1rem 0;
+  max-height: 230px;
+  overflow-y: auto;
+  font-family: "Fira Code", monospace;
+  line-height: 1.4rem;
+  position: relative;
+}
+
+.glow {
+  box-shadow: 0 0 15px #0ff, 0 0 25px #0ff;
+}
+
+/* Copy button */
+.copy-btn {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 15px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  transition: 0.3s;
+}
+
+.copy-btn:hover {
+  transform: scale(1.07);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}

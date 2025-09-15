@@ -1,0 +1,593 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.draw-to-dev * {
+  box-sizing: border-box;
+}
+
+.draw-to-dev {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(135deg, #0f172a, #581c87, #0f172a);
+  min-height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.container {
+  max-width: 100%;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 1rem;
+}
+
+/* MacBook Bezel */
+.macbook-bezel {
+  background: #374151;
+  border-radius: 24px 24px 0 0;
+  padding: 1.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+}
+
+.macbook-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.traffic-lights {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.traffic-light {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.traffic-light:hover {
+  transform: scale(1.1);
+}
+
+.traffic-light.red { 
+  background: #ef4444; 
+}
+
+.traffic-light.yellow { 
+  background: #eab308; 
+}
+
+.traffic-light.green { 
+  background: #22c55e; 
+}
+
+.window-title {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+}
+
+.spacer {
+  width: 4rem;
+}
+
+/* Main Screen */
+.macbook-screen {
+  background: #000000;
+  border-radius: 16px;
+  padding: 2rem;
+  min-height: calc(100vh - 4rem);  /* Adjust for container padding */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Header Section */
+.app-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.app-title {
+  font-size: 3.75rem;
+  font-weight: 100;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #ffffff, #d1d5db);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.app-subtitle {
+  color: #9ca3af;
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+.title-divider {
+  width: 6rem;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  margin: 1.5rem auto 0;
+  border-radius: 2px;
+}
+
+/* Main Content Grid */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  height: calc(100vh - 15rem); /* Adjust based on header height */
+  overflow-y: auto;
+}
+
+@media (max-width: 1024px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+}
+
+/* Panel Styles */
+.panel {
+  background: #111827;
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid #374151;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
+  height: auto;        /* let content decide height */
+  max-height: none;    /* remove height restriction */
+  overflow-y: visible; /* no scroll */
+}
+
+
+.panel:hover {
+  border-color: #4b5563;
+  transform: translateY(-2px);
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  color: #ffffff;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 0.75rem;
+}
+
+.status-dot.blue { 
+  background: #3b82f6; 
+}
+
+.status-dot.green { 
+  background: #10b981; 
+}
+
+.status-dot.purple { 
+  background: #8b5cf6; 
+}
+
+/* Upload Section */
+.upload-area {
+  position: relative;
+  border: 2px dashed #4b5563;
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background: rgba(31, 41, 55, 0.5);
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-area:hover {
+  border-color: #6b7280;
+  background: rgba(31, 41, 55, 0.8);
+}
+
+.upload-area.dragover {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.upload-content {
+  pointer-events: none;
+}
+
+.upload-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.upload-text {
+  color: #9ca3af;
+  font-size: 1.125rem;
+  margin-bottom: 0.5rem;
+}
+
+.upload-subtext {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.file-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.preview-image {
+  max-width: 100%;
+  max-height: 256px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.preview-container {
+  position: relative;
+  display: inline-block;
+}
+
+.preview-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.preview-container:hover .preview-overlay {
+  opacity: 1;
+}
+
+.remove-btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.remove-btn:hover {
+  background: #dc2626;
+}
+
+/* Framework Selection */
+.framework-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  height: 100%;          /* take full parent height */
+  max-height: none;      /* no scrollbar */
+  overflow-y: hidden;    /* prevent scroll */
+}
+
+.framework-btn {
+  padding: 1rem;
+  border-radius: 12px;
+  border: 2px solid #374151;
+  background: transparent;
+  color: #9ca3af;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+
+  display: flex;         /* make button content aligned */
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.framework-btn:hover {
+  border-color: #4b5563;
+  color: #d1d5db;
+}
+
+.framework-btn.active {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+}
+
+.framework-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+.framework-name {
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+/* Code Terminal */
+.code-terminal {
+  border-radius: 16px;
+  border: 1px solid #374151;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  background: #0f172a;
+}
+
+.terminal-header {
+  background: #1f2937;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #374151;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.terminal-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.terminal-lights {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.terminal-light {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.terminal-light.red { 
+  background: #ef4444; 
+}
+
+.terminal-light.yellow { 
+  background: #eab308; 
+}
+
+.terminal-light.green { 
+  background: #22c55e; 
+}
+
+.file-name {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  font-family: 'JetBrains Mono', monospace;
+  margin-left: 1rem;
+}
+
+.copy-btn {
+  background: #374151;
+  color: #d1d5db;
+  border: none;
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.copy-btn:hover {
+  background: #4b5563;
+}
+
+.copy-btn.copied {
+  background: #059669;
+  color: white;
+}
+
+.code-content {
+  padding: 1.5rem;
+  background: #020617;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.code-block {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #d1d5db;
+  white-space: pre-wrap;
+  margin: 0;
+}
+
+.code-block code {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* Generate Button */
+.generate-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: white;
+  font-weight: 600;
+  padding: 1rem 2rem;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1.125rem;
+  margin-top: 1.5rem;
+}
+
+.generate-btn:hover:not(:disabled) {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+}
+
+.generate-btn:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
+}
+
+.generate-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Status Bar */
+.status-bar {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #1f2937;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.status-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+}
+
+/* MacBook Base */
+.macbook-base {
+  background: #4b5563;
+  height: 16px;
+  border-radius: 0 0 24px 24px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+}
+
+.macbook-stand {
+  background: #6b7280;
+  height: 8px;
+  border-radius: 0 0 16px 16px;
+  margin: 0 2rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app-title {
+    font-size: 2.5rem;
+  }
+  
+  .macbook-screen {
+    padding: 1rem;
+  }
+  
+  .framework-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .main-grid {
+    gap: 1rem;
+  }
+  
+  .panel {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-title {
+    font-size: 2rem;
+  }
+  
+  .upload-area {
+    padding: 1rem;
+    min-height: 150px;
+  }
+  
+  .upload-icon {
+    font-size: 3rem;
+  }
+}
+
+/* Scrollbar Styling */
+.code-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.code-content::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+
+.code-content::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 4px;
+}
+
+.code-content::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
+/* Loading Animation */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.generate-btn:disabled span:first-child {
+  animation: spin 1s linear infinite;
+}
