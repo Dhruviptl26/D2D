@@ -1,0 +1,6 @@
+flask
+ultralytics
+google-generativeai
+opencv-python
+numpy
+torch
